@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stock-backtest-strategies
+  labels:
+    app: stock-backtest-strategies
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stock-backtest-strategies
+  template:
+    metadata:
+      labels:
+        app: stock-backtest-strategies
+    spec:
+      containers:
+      - name: stock-backtest-strategies
+        image: stock-backtest-strategies:latest
+        ports:
+        - containerPort: 8080
