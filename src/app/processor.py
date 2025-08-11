@@ -1,5 +1,4 @@
-"""
-Processor module for stock-backtest-strategies.
+"""Processor module for stock-backtest-strategies.
 
 Validates incoming messages and executes multi-signal strategies to
 generate final trade actions. This simulates rules-based or weighted logic.
@@ -15,8 +14,7 @@ logger = setup_logger(__name__)
 
 
 def validate_input_message(message: dict[str, Any]) -> ValidatedMessage:
-    """
-    Validate the incoming raw message against the expected schema.
+    """Validate the incoming raw message against the expected schema.
 
     Args:
         message (dict[str, Any]): The raw input message.
@@ -26,6 +24,7 @@ def validate_input_message(message: dict[str, Any]) -> ValidatedMessage:
 
     Raises:
         ValueError: If the message format is invalid.
+
     """
     logger.debug("🔍 Validating message schema...")
     if not validate_message_schema(message):
@@ -35,14 +34,14 @@ def validate_input_message(message: dict[str, Any]) -> ValidatedMessage:
 
 
 def evaluate_strategy(message: ValidatedMessage) -> dict[str, Any]:
-    """
-    Evaluate a configurable strategy using available sub-signals.
+    """Evaluate a configurable strategy using available sub-signals.
 
     Args:
         message (ValidatedMessage): Validated signal-rich input.
 
     Returns:
         dict[str, Any]: Enriched message with final trade decision.
+
     """
     symbol = message.get("symbol", "UNKNOWN")
     logger.info("🧮 Evaluating strategy for %s", symbol)
